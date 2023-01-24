@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-
   def index
     @products = Product.all
   end
@@ -12,16 +11,6 @@ class ProductsController < ApplicationController
     @product = Product.new product_params
     @product.save
     redirect_to @product
-
-    # if @product.save
-    #   redirect_to @product
-
-    # else
-    #   render :new, status: :unprocessable_entity
-    # end 
-
-
-
   end
 
   def update
@@ -29,17 +18,13 @@ class ProductsController < ApplicationController
     redirect_to @product
   end
 
-def edit
-  @product = Product.find(params[:id])
-end
+  def edit
+    @product = Product.find(params[:id])
+  end
 
- private
+  private
 
- def product_params
+  def product_params
     params.require(:product).permit(:title, :short_description, :price)
- end
-
-#  def product
-#   @product = Product.find(params[:id])
-#  end
+  end
 end
