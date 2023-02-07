@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+   # @products = Product.all
+   render json: Product.all
   end
 
   def new
@@ -8,14 +9,21 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new product_params
-    @product.save
-    redirect_to @product
+    @product = Product.create(product_params)
+  # @product.save
+
+   # redirect_to @product
+  # @products = Product.all
   end
 
+  def show
+    @product = Product.find(params[:id])
+    render json: @product
+
+  end
   def update
     @product.update(product_params)
-    redirect_to @product
+   # redirect_to @product
   end
 
   def edit
